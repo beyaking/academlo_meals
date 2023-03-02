@@ -14,10 +14,10 @@ class Server {
 
     //Path Routes
     this.paths = {
-      user: 'api/v1/users',
-      restaurant: 'api/v1/restaurants',
-      meal: 'api/v1/meals',
-      order: 'api/v1/orders',
+      user: '/api/v1/users',
+      restaurant: '/api/v1/restaurants',
+      meal: '/api/v1/meals',
+      order: '/api/v1/orders',
     };
 
     //Connect to db
