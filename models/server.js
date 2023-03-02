@@ -5,6 +5,7 @@ const { userRouter } = require('../routes/user.routes');
 const { mealRouter } = require('../routes/meal.routes');
 const { restaurantRouter } = require('../routes/restaurant.routes');
 const { orderRouter } = require('../routes/order.routes');
+const initModel = require('./initModel');
 
 class Server {
   constructor() {
@@ -47,6 +48,8 @@ class Server {
       .catch(err => console.log(err));
 
     //relations
+
+    initModel();
 
     db.sync()
       .then(() => console.log('Database synced'))
