@@ -26,10 +26,9 @@ const User = db.define('users', {
     defaultValue: 'normal',
   },
   status: {
-    type: DataTypes.ENUM('available', 'disabled'),
-    allowNull: false,
-    defaultValue: 'available',
-  },
+    type: DataTypes.BOOLEAN,
+    defaultValue: true
+  }
 });
 
 module.exports = User;

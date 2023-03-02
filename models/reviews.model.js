@@ -23,6 +23,13 @@ const Review = db.define('review', {
   rating: {
     type: DataTypes.INTEGER,
     allowNull: false
+  },
+
+  status: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false,
+    defaultValue: true
+
   }
 });
 
