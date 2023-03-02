@@ -6,6 +6,8 @@ const { mealRouter } = require('../routes/meal.routes');
 const { restaurantRouter } = require('../routes/restaurant.routes');
 const { orderRouter } = require('../routes/order.routes');
 const initModel = require('./initModel');
+const globalErrorHandler = require('../controllers/error.controller');
+const morgan = require('morgan');
 
 class Server {
   constructor() {
@@ -33,6 +35,9 @@ class Server {
   middlewares() {
     this.app.use(cors());
     this.app.use(express.json());
+    if(process.env.NODE_ENV === 'development'){
+      this.app.use(morgan('dev'))
+    }
   }
 
   routes() {
@@ -40,6 +45,14 @@ class Server {
     this.app.use(this.paths.meal, mealRouter);
     this.app.use(this.paths.restaurant, restaurantRouter);
     this.app.use(this.paths.order, orderRouter);
+
+    this.app.all('*', (req, res, next) => {
+      return next(
+        new AppError(`Cant find ${req.originalUrl} on this server!`, 404)
+      );
+    });
+
+    this.app.use(globalErrorHandler);
   }
 
   database() {

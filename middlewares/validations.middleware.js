@@ -17,3 +17,10 @@ exports.signupValidations = [
     check('email', 'the email must have a correct format').isEmail(),
     check('password', 'the password is required').not().isEmpty(),
 ];
+
+exports.loginValidations = [
+    check('email', 'the email is required').not().isEmpty(),
+    check('email', 'the email must have a correct format').isEmail(),
+    check('password', 'the password is required').not().isEmpty(),
+
+]
