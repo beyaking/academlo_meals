@@ -1,6 +1,7 @@
 const { Router } = require('express');
 const { check } = require('express-validator');
 const { signup, login, updatePassword, updateUser } = require('../controllers/users.controller');
+const { protect } = require('../middlewares/auth.middleware');
 const {
   validUserByEmail,
   validPassword,
@@ -33,6 +34,7 @@ router.patch(
     check('email', 'The email must be a correct format').isEmail(),
 
     validateField,
+    protect
   ],
   finderId,
   updateUser

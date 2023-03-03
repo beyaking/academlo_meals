@@ -57,4 +57,14 @@ exports.updatePassword = catchAsync(async (req, res, next) => {
   }
   const salt = await bcrypt.genSalt(10);
   const encriptedPassword = await bcrypt.hash(newPassword, salt);
+
+  await user.update({
+    password: encriptedPassword,
+    passwordChangeAt: new Date(),
+  })
+
+  res.status(200).json({
+    status: 'success',
+    message: 'The user password was update successfuly'
+  })
 });
